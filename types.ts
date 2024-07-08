@@ -16,7 +16,7 @@ export interface BillI {
   id: string | number;
   name: string;
   fiat: string;
-  billType: "TV" | "Internet" | "Electricity";
+  billType: "TV" | "Internet" | "Electricity" | "Water";
   image: string;
   packages: PackageI[];
 }
@@ -28,4 +28,17 @@ export interface PackageI {
   duration?: string;
   fiat: number;
   country: string | "UGX";
+}
+
+export interface PriceI {
+  id: string | number;
+  amount: number;
+  country: string;
+}
+
+export interface AccountI {
+  id: string | number;
+  name: String;
+  accountNo: String;
+  address: String;
 }

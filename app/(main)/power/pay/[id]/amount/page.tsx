@@ -1,0 +1,66 @@
+"use client";
+
+import SecondaryLayout from "@/app/components/secondary-layout";
+import { Input } from "@/components/ui/input";
+import { pricing } from "@/data";
+import { useState } from "react";
+import { useParams, usePathname, useSearchParams } from "next/navigation";
+import PriceCard from "@/app/(main)/power/components/price-card";
+import { PriceI } from "@/types";
+
+const EnterAmountPage = () => {
+  const [selectedAmount, setSelectedAmount] = useState<PriceI>(pricing[0]);
+
+  const searchParams = useSearchParams();
+
+  const { id } = useParams();
+
+  const account = searchParams.get("acc");
+
+  if (!account)
+    return (
+      <div className="flex flex-1 items-center justify-center">
+        <p className="text-lg font-medium">Please enter your account number</p>
+      </div>
+    );
+
+  return (
+    <SecondaryLayout
+      header="Power Bills"
+      title="Enter your amount to pay"
+      route={`/power/pay/${id}/amount/summary?acc=${account}&amt=${selectedAmount.amount}`}
+    >
+      <div className="flex w-full items-center mb-5">
+        <Input
+          placeholder="Amount to pay"
+          autoFocus
+          className="text-lg border-2 h-14 rounded-md px-4 w-full outline-none "
+          type="number"
+          value={selectedAmount.amount}
+          // @ts-ignore
+          onChange={(e) => setSelectedAmount(e.target.value)}
+        />
+      </div>
+
+      <div className="flex flex-row items-center w-full flex-wrap  gap-4 justify-between">
+        {pricing.map((price) => (
+          <PriceCard
+            key={price.id}
+            item={price}
+            selectedAmount={selectedAmount}
+            setAmount={setSelectedAmount}
+          />
+        ))}
+      </div>
+
+      <div className="w-full flex-col items-center justify-between py-5 my-4 border rounded-lg px-4 bg-slate-50 shadow-sm">
+        <div className="flex w-full flex-row items-center justify-between">
+          <p className="text-base">Account Number</p>
+          <p className="text-base font-medium">{account}</p>
+        </div>
+      </div>
+    </SecondaryLayout>
+  );
+};
+
+export default EnterAmountPage;

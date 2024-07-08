@@ -19,16 +19,23 @@ const BillsCards = () => {
           <p className="text-xs font-semibold text-center">TV</p>
         </Link>
 
-        <div className="w-full h-32 border bg-white rounded-md flex flex-col items-center p-3">
+        <Link
+          href="/power"
+          className="w-full h-32 border bg-white rounded-md flex flex-col items-center p-3"
+        >
           <div className="flex flex-1"></div>
           <p className="text-xs font-semibold text-center">Electricity</p>
-        </div>
+        </Link>
       </div>
+
       <div className="flex w-full flex-row ">
-        <div className="w-full h-32 border bg-white rounded-md flex flex-col items-center p-3">
+        <Link
+          href="/water"
+          className="w-full h-32 border bg-white rounded-md flex flex-col items-center p-3"
+        >
           <div className="flex flex-1"></div>
           <p className="text-xs font-semibold text-center">Water</p>
-        </div>
+        </Link>
 
         <div className="w-full h-32  mx-3 rounded-md flex flex-col items-center p-3"></div>
         <div className="w-full h-32   rounded-md flex flex-col items-center p-3"></div>

@@ -2,7 +2,7 @@
 
 import SecondaryHeader from "@/app/components/secondary-header";
 import { Button } from "@/components/ui/button";
-import { Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, Wallet } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { ReactNode, useState } from "react";
 
@@ -10,19 +10,23 @@ const SecondaryLayout = ({
   children,
   route,
   title,
+  header,
+  submit,
 }: {
   children: ReactNode;
   route: string;
-  title: string;
+  title?: string;
+  header: string;
+  submit?: boolean;
 }) => {
   const [showBalance, setShowBalance] = useState(false);
   const router = useRouter();
 
   return (
     <div className="flex flex-1 flex-col bg-white">
-      <SecondaryHeader title="TV Bills" />
+      <SecondaryHeader title={header} />
       <div className="px-5 flex flex-1 flex-col flex-grow pt-24 pb-36">
-        <h1 className="text-md font-bold mb-5">{title}</h1>
+        {title && <h1 className="text-md font-bold mb-5">{title}</h1>}
 
         {children}
       </div>
@@ -60,12 +64,22 @@ const SecondaryLayout = ({
         </div>
 
         <div className="flex h-full w-full">
-          <Button
-            onClick={() => router.push(route)}
-            className="w-full uppercase h-12 text-base font-bold rounded-full bg-defaultColor text-black hover:text-white"
-          >
-            Continue
-          </Button>
+          {submit ? (
+            <Button
+              onClick={() => console.log("Payment successful")}
+              className="w-full uppercase h-12 text-base font-bold rounded-full bg-defaultColor text-black hover:text-white flex flex-row items-center"
+            >
+              Pay
+              <Wallet size={15} className="ml-2" />
+            </Button>
+          ) : (
+            <Button
+              onClick={() => router.push(route)}
+              className="w-full uppercase h-12 text-base font-bold rounded-full bg-defaultColor text-black hover:text-white"
+            >
+              Continue
+            </Button>
+          )}
         </div>
       </div>
     </div>

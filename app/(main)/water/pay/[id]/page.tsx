@@ -2,22 +2,24 @@
 
 import SecondaryLayout from "@/app/components/secondary-layout";
 import { Input } from "@/components/ui/input";
-import { tvBills } from "@/data";
+import { powerBills, waterBills } from "@/data";
 import Image from "next/image";
 import { useParams } from "next/navigation";
+import { useState } from "react";
 
-const PayTvPage = () => {
+const EnterAccountPage = () => {
   const { id } = useParams();
+  const [accountNumber, setAccountNumber] = useState("0x6fahsd8asdgjhas");
 
-  const bill = tvBills.find((bill) => bill.id === Number(id));
+  const bill = waterBills.find((bill) => bill.id === Number(id));
 
   if (!bill) return null;
 
   return (
     <SecondaryLayout
-      header="TV Bills"
+      header="Water Bills"
       title={`Enter your ${bill.name} smart card number`}
-      route={`/tv/pay/${id}/packages`}
+      route={`/water/pay/${id}/amount?acc=${accountNumber}`}
     >
       <div className="flex w-full items-center">
         <div className="h-14 w-16 rounded-md mr-3 p-3 bg-neutral-200 relative overflow-hidden">
@@ -34,4 +36,4 @@ const PayTvPage = () => {
   );
 };
 
-export default PayTvPage;
+export default EnterAccountPage;

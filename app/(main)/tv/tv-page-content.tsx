@@ -11,6 +11,7 @@ const TvPageContent = () => {
 
   return (
     <SecondaryLayout
+      header="TV Bills"
       title="Select the bill you want to buy"
       route={`/tv/pay/${selectedBill.id}`}
     >

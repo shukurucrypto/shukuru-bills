@@ -1,4 +1,4 @@
-import { ActivityI, AssetEnum, BillI } from "@/types";
+import { AccountI, ActivityI, AssetEnum, BillI, PriceI } from "@/types";
 
 export const activities: ActivityI[] = [
   {
@@ -189,3 +189,91 @@ export const tvBills: BillI[] = [
     ],
   },
 ];
+
+export const powerBills: BillI[] = [
+  {
+    id: 1,
+    billType: "Electricity",
+    name: "Yaka",
+    fiat: "UGX",
+    image:
+      "https://pbs.twimg.com/profile_images/1383017600163184645/UGdcEjVB_400x400.jpg",
+    packages: [],
+  },
+  {
+    id: 2,
+    billType: "Electricity",
+    name: "Umeme",
+    fiat: "UGX",
+    image:
+      "https://pbs.twimg.com/profile_images/1522794114231771137/Tol0ML6l_400x400.jpg",
+    packages: [],
+  },
+];
+
+export const pricing: PriceI[] = [
+  {
+    id: 10,
+    amount: 5_000,
+    country: "UGX",
+  },
+  {
+    id: 1,
+    amount: 10_000,
+    country: "UGX",
+  },
+  {
+    id: 2,
+    amount: 20_000,
+    country: "UGX",
+  },
+  {
+    id: 3,
+    amount: 30_000,
+    country: "UGX",
+  },
+  {
+    id: 4,
+    amount: 40_000,
+    country: "UGX",
+  },
+  {
+    id: 5,
+    amount: 50_000,
+    country: "UGX",
+  },
+  {
+    id: 6,
+    amount: 60_000,
+    country: "UGX",
+  },
+  {
+    id: 7,
+    amount: 70_000,
+    country: "UGX",
+  },
+  {
+    id: 8,
+    amount: 80_000,
+    country: "UGX",
+  },
+];
+
+export const waterBills: BillI[] = [
+  {
+    id: 1,
+    name: "NWSC",
+    billType: "Water",
+    fiat: "UGX",
+    image:
+      "https://pbs.twimg.com/profile_images/1587357687737630720/_EZ06PEb_400x400.jpg",
+    packages: [],
+  },
+];
+
+export const powerAccount: AccountI = {
+  id: 1,
+  name: "Kigozii Paul Kulumba",
+  accountNo: "6893035839303",
+  address: "Kampala, Uganda",
+};

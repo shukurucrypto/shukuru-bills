@@ -1,3 +1,4 @@
+import { tvBills } from "@/data";
 import { ActivityI } from "@/types";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
@@ -19,7 +20,9 @@ const ActivityCard = ({ activity }: { activity: ActivityI }) => {
 
   return (
     <div className="w-full h-20 cursor-pointer bg-white items-center p-3 border-b flex flex-row">
-      <div className="size-12 rounded-md bg-neutral-100"></div>
+      <div className="size-12 rounded-md overflow-hidden bg-neutral-100 relative">
+        <Image src={tvBills[0].image} layout="fill" alt="asset" />
+      </div>
       <div className="flex flex-col px-3  flex-1">
         <h1 className="text-sm font-bold">{activity.title}</h1>
         <h3 className="text-xs font-thin ">UGX {activity.amount}</h3>

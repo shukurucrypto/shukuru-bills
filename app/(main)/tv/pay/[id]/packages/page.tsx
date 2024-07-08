@@ -19,7 +19,12 @@ const TvPackagesPage = () => {
   if (!bill) return null;
 
   return (
-    <SecondaryLayout title="Select Package to Buy" route="/home">
+    <SecondaryLayout
+      header="TV Bills"
+      title="Select Package to Buy"
+      route="/home"
+      submit
+    >
       {bill.packages &&
         bill.packages.map((item) => (
           <PackageCard
