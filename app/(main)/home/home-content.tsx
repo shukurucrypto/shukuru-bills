@@ -26,9 +26,7 @@ const HomeContent = ({ activities }: { activities: ActivityI[] }) => {
       <h1 className="text-base my-4 font-medium">Recent activity</h1>
 
       <div className="w-full rounded-md overflow-hidden border">
-        {activities.map((activity) => (
-          <ActivityCard key={activity.id} activity={activity} />
-        ))}
+        <ActivityCard />
       </div>
     </div>
   );

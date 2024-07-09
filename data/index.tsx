@@ -275,6 +275,7 @@ export const powerAccount: AccountI = {
   id: 1,
   name: "Nansubuga Proscovia",
   accountNo: "14352987862",
+  phone: "0779280949",
   address: "Entebbe, Uganda",
 };
 

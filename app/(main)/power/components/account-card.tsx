@@ -29,6 +29,11 @@ const AccountCard = ({
         <h1 className="text-sm font-medium">{account.accountNo}</h1>
       </div>
 
+      <div className="w-full mb-2 flex items-center justify-between">
+        <h1 className="text-sm font-semibold text-neutral-400">Phone:</h1>
+        <h1 className="text-sm font-medium">{account.phone}</h1>
+      </div>
+
       <div className="w-full my-2 flex items-center justify-between">
         <h1 className="text-sm font-semibold text-neutral-400">Address:</h1>
         <h1 className="text-sm font-medium">{account.address}</h1>

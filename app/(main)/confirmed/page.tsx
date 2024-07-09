@@ -5,6 +5,8 @@ import React from "react";
 import ConfirmedCard from "../power/components/confirmed-card";
 import { Button } from "@/components/ui/button";
 import { useRouter, useSearchParams } from "next/navigation";
+import Image from "next/image";
+import { powerBills } from "@/data";
 
 interface Params {
   phone: string;
@@ -43,6 +45,20 @@ const TransactionConfirmedPage: React.FC = () => {
     return acc;
   }, {} as Params);
 
+  // Function to handle the "Done" button click
+  const handleDoneClick = () => {
+    const receipt = {
+      energyToken: params.energyToken,
+      amount: params.amount,
+    };
+
+    // Save the receipt to local storage
+    localStorage.setItem("receipt", JSON.stringify(receipt));
+
+    // Navigate to the home page
+    router.push("/home");
+  };
+
   return (
     <SecondaryLayout
       header="Order Info"
@@ -54,7 +70,7 @@ const TransactionConfirmedPage: React.FC = () => {
         <div className="w-full flex flex-row justify-between h-16 mb-8">
           <div className="flex flex-row">
             <div className="size-14 bg-green-600 rounded-full relative overflow-hidden">
-              {/* <Image src={billData.image} layout="fill" alt="bill-logo" /> */}
+              <Image src={powerBills[0].image} layout="fill" alt="bill-logo" />
             </div>
 
             <div className="flex flex-col mx-3">
@@ -86,7 +102,7 @@ const TransactionConfirmedPage: React.FC = () => {
       <div className="w-full mt-8">
         <Button
           className="w-full rounded-full bg-defaultColor text-slate-800 font-semibold"
-          onClick={() => router.push("/home")}
+          onClick={handleDoneClick}
         >
           Done
         </Button>

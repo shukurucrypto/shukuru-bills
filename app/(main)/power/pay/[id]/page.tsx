@@ -2,12 +2,11 @@
 
 import SecondaryLayout from "@/app/components/secondary-layout";
 import { Input } from "@/components/ui/input";
-import { powerAccount, powerBills, waterBills } from "@/data";
+import { powerAccount, powerBills } from "@/data";
 import Image from "next/image";
 import { useParams } from "next/navigation";
 import { useState } from "react";
 import AccountCard from "../../components/account-card";
-import { AccountI } from "@/types";
 
 const EnterAccountPage = () => {
   const { id } = useParams();

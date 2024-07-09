@@ -1,10 +1,14 @@
 "use client";
 
+import { upsertPayBill } from "@/app/actions";
 import SecondaryLayout from "@/app/components/secondary-layout";
-import { powerBills } from "@/data";
+import { useBillMutation } from "@/app/hooks/mutations/useBillMutation";
+import { powerAccount, powerBills } from "@/data";
+import { PayBillI } from "@/types";
 import Image from "next/image";
 import { useParams, useRouter, useSearchParams } from "next/navigation";
 import qs from "qs";
+import { toast } from "sonner";
 
 const PowerBillSummary = () => {
   const { id } = useParams();
@@ -15,6 +19,7 @@ const PowerBillSummary = () => {
 
   const bill = powerBills.find((bill) => bill.id === Number(id));
 
+  const mutation = useBillMutation(upsertPayBill);
   // http://localhost:3000/power/pay/1/amount/summary?acc=14352987862&amt=2000
 
   const account = searchParams.get("acc");
@@ -25,39 +30,47 @@ const PowerBillSummary = () => {
 
   const amt = searchParams.get("amt");
 
+  const handleSubmit = () => {
+    const billData: PayBillI = {
+      account: meter!,
+      action: "paybill",
+      amount: amt!,
+      phone: powerAccount.phone,
+      provider: "umeme",
+    };
+
+    mutation.mutate(billData);
+  };
+
   if (!bill || !account || !amt || !meter || !outstanding) {
     router.back();
     return;
   }
 
-  const createUrlString = () => {
-    const data = {
-      phone: "0787.....",
-      account: "0424...",
-      amount: "1000",
-      easypayId: "5345351",
-      units: "1.2",
-      transferCode: "0424xxx-UMEME834561",
-      energyToken: "6642 1234 4567 1234 1247",
-      type: "PREPAID",
-      reference: "Your order ref",
-      date: "2018-10-27 13:10:28",
-    };
-
+  if (mutation.isSuccess && mutation.data && mutation.data.success === 1) {
     // Serialize the data object to a query string
-    const queryString = qs.stringify(data);
+    const queryString = qs.stringify(mutation.data.details);
 
     // Use the query string in the route prop
-    return `/confirmed?${queryString}`;
-  };
+    const routerString = `/confirmed?${queryString}`;
+
+    router.push(routerString);
+  }
+
+  if (mutation.isSuccess && mutation.data && mutation.data.success === 0) {
+    toast("Failed to fetch bill information");
+  }
 
   return (
     <SecondaryLayout
       header="Summary"
       title=""
-      // route={`/confirmed/${bill.id}`}
-      route={createUrlString()}
-      noWalletBalances
+      route={`/confirmed/${bill.id}`}
+      submit
+      submitText="Next"
+      loading={mutation.isPending}
+      onSubmit={handleSubmit}
+      isError={mutation.isError && mutation.error.message}
     >
       <div className="w-full h-full border rounded-md p-4">
         <div className="w-full flex items-center justify-center">

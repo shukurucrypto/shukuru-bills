@@ -3,7 +3,7 @@
 import PriceCard from "@/app/(main)/power/components/price-card";
 import { upsertGetBillingInfo } from "@/app/actions";
 import SecondaryLayout from "@/app/components/secondary-layout";
-import { useGetBillQuote } from "@/app/hooks/mutations/useGetBillQuote";
+import { useBillMutation } from "@/app/hooks/mutations/useBillMutation";
 import { Input } from "@/components/ui/input";
 import { pricing } from "@/data";
 import { BillInfoI, PriceI } from "@/types";
@@ -16,7 +16,7 @@ const EnterAmountPage = () => {
 
   const searchParams = useSearchParams();
 
-  const mutation = useGetBillQuote(upsertGetBillingInfo);
+  const mutation = useBillMutation(upsertGetBillingInfo);
 
   const { id } = useParams();
 
@@ -51,7 +51,7 @@ const EnterAmountPage = () => {
     const { CustomerId, CustomerName, outstanding } = mutation.data.data;
 
     router.push(
-      `/power/pay/${id}/amount/summary?acc=${CustomerName}&amt=${selectedAmount.amount}&outstanding=${outstanding}&meter=${account}`
+      `/power/pay/${id}/amount/summary?acc=${CustomerName}&amt=${selectedAmount.amount}&outstanding=${outstanding}&meter=${account}&customer=${CustomerId}`
     );
   }
 

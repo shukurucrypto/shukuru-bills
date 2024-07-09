@@ -38,9 +38,10 @@ export interface PriceI {
 
 export interface AccountI {
   id: string | number;
-  name: String;
-  accountNo: String;
-  address: String;
+  name: string;
+  accountNo: string;
+  phone: string;
+  address: string;
 }
 
 export interface BillInfoI {
@@ -50,4 +51,15 @@ export interface BillInfoI {
   provider: "umeme" | "yaka";
   account: string;
   amount: string;
+}
+
+export interface PayBillI {
+  username?: string;
+  password?: string;
+  action: "paybill";
+  provider: "umeme" | "yaka";
+  phone: string;
+  amount: string;
+  account: string;
+  reference?: string;
 }
