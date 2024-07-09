@@ -42,3 +42,12 @@ export interface AccountI {
   accountNo: String;
   address: String;
 }
+
+export interface BillInfoI {
+  username?: string;
+  password?: string;
+  action: "paybilladvice";
+  provider: "umeme" | "yaka";
+  account: string;
+  amount: string;
+}

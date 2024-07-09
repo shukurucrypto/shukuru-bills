@@ -1,21 +1,44 @@
 "use client";
 
+import PriceCard from "@/app/(main)/power/components/price-card";
+import { upsertGetBillingInfo } from "@/app/actions";
 import SecondaryLayout from "@/app/components/secondary-layout";
+import { useGetBillQuote } from "@/app/hooks/mutations/useGetBillQuote";
 import { Input } from "@/components/ui/input";
 import { pricing } from "@/data";
+import { BillInfoI, PriceI } from "@/types";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
-import { useParams, usePathname, useSearchParams } from "next/navigation";
-import PriceCard from "@/app/(main)/power/components/price-card";
-import { PriceI } from "@/types";
+import { toast } from "sonner";
 
 const EnterAmountPage = () => {
   const [selectedAmount, setSelectedAmount] = useState<PriceI>(pricing[0]);
 
   const searchParams = useSearchParams();
 
+  const mutation = useGetBillQuote(upsertGetBillingInfo);
+
   const { id } = useParams();
 
   const account = searchParams.get("acc");
+
+  const router = useRouter();
+
+  const handleSubmit = () => {
+    if (!account) {
+      toast("Please enter your account number");
+      return;
+    }
+
+    const billData: BillInfoI = {
+      provider: "umeme",
+      account: account!,
+      action: "paybilladvice",
+      amount: selectedAmount.amount.toString(),
+    };
+
+    mutation.mutate(billData);
+  };
 
   if (!account)
     return (
@@ -24,11 +47,28 @@ const EnterAmountPage = () => {
       </div>
     );
 
+  if (mutation.isSuccess && mutation.data && mutation.data.success === 1) {
+    const { CustomerId, CustomerName, outstanding } = mutation.data.data;
+
+    router.push(
+      `/power/pay/${id}/amount/summary?acc=${CustomerName}&amt=${selectedAmount.amount}&outstanding=${outstanding}&meter=${account}`
+    );
+  }
+
+  if (mutation.isSuccess && mutation.data && mutation.data.success === 0) {
+    toast("Failed to fetch bill information");
+  }
+
   return (
     <SecondaryLayout
       header="Power Bills"
       title="Enter your amount to pay"
       route={`/power/pay/${id}/amount/summary?acc=${account}&amt=${selectedAmount.amount}`}
+      submit
+      submitText="Next"
+      loading={mutation.isPending}
+      onSubmit={handleSubmit}
+      isError={mutation.isError && mutation.error.message}
     >
       <div className="flex w-full items-center mb-5">
         <Input

@@ -213,6 +213,16 @@ export const powerBills: BillI[] = [
 
 export const pricing: PriceI[] = [
   {
+    id: 11,
+    amount: 1_000,
+    country: "UGX",
+  },
+  {
+    id: 12,
+    amount: 2_000,
+    country: "UGX",
+  },
+  {
     id: 10,
     amount: 5_000,
     country: "UGX",
@@ -247,16 +257,6 @@ export const pricing: PriceI[] = [
     amount: 60_000,
     country: "UGX",
   },
-  {
-    id: 7,
-    amount: 70_000,
-    country: "UGX",
-  },
-  {
-    id: 8,
-    amount: 80_000,
-    country: "UGX",
-  },
 ];
 
 export const waterBills: BillI[] = [
@@ -273,7 +273,9 @@ export const waterBills: BillI[] = [
 
 export const powerAccount: AccountI = {
   id: 1,
-  name: "Kigozii Paul Kulumba",
-  accountNo: "6893035839303",
-  address: "Kampala, Uganda",
+  name: "Nansubuga Proscovia",
+  accountNo: "14352987862",
+  address: "Entebbe, Uganda",
 };
+
+export const BILL_API_URL = "https://www.easypay.co.ug/api/";
