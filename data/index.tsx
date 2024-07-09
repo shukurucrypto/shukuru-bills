@@ -1,4 +1,5 @@
 import { AccountI, ActivityI, AssetEnum, BillI, PriceI } from "@/types";
+import ERC20 from "../utils/erc20ABI.json";
 
 export const activities: ActivityI[] = [
   {
@@ -280,3 +281,19 @@ export const powerAccount: AccountI = {
 };
 
 export const BILL_API_URL = "https://www.easypay.co.ug/api/";
+
+export const USDC_CONTRACT_ADDRESS =
+  "0x053c91253bc9682c04929ca02ed00b3e423f6710d2ee7e0d5ebb06f3ecf368a8";
+
+export const USDC_DECIMALS = 6;
+
+export const USDT_ADDRESS = "0x48065fbBE25f71C9282ddf5e1cD6D6A887483D5e";
+export const USDC_ADDRESS = "0xcebA9300f2b948710d2653dD7B07f33A8B32118C";
+
+export const CUSD_ADDRESS = "0x765de816845861e75a25fca122bb6898b8b1282a";
+
+export const CUSD_ABI: any = ERC20;
+export const USDC_ABI: any = ERC20;
+export const USDT_ABI: any = ERC20;
+
+export const USD_EXCHANGE_RATE = 3707;

@@ -69,6 +69,7 @@ const EnterAmountPage = () => {
       loading={mutation.isPending}
       onSubmit={handleSubmit}
       isError={mutation.isError && mutation.error.message}
+      selectedAmount={selectedAmount.amount}
     >
       <div className="flex w-full items-center mb-5">
         <Input

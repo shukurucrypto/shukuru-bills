@@ -14,7 +14,7 @@ const useConnectWallet = () => {
     }
   }, [connect]);
 
-  return { hideConnectBtn, isConnected };
+  return { hideConnectBtn, isConnected, connect };
 };
 
 export default useConnectWallet;

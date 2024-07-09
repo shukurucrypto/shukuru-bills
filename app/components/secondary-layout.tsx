@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Eye, EyeOff, Loader, Wallet } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { ReactNode, useState } from "react";
+import { useAccountBalance } from "../hooks/useAccountBalance";
 
 const SecondaryLayout = ({
   children,
@@ -18,6 +19,7 @@ const SecondaryLayout = ({
   isError,
   noWalletBalances,
   noButton,
+  selectedAmount,
 }: {
   children: ReactNode;
   route: string;
@@ -30,9 +32,13 @@ const SecondaryLayout = ({
   isError?: string | boolean;
   noWalletBalances?: boolean;
   noButton?: boolean;
+  selectedAmount?: number;
 }) => {
   const [showBalance, setShowBalance] = useState(false);
   const router = useRouter();
+  const { balance, isLoading, isError: balancesError } = useAccountBalance();
+
+  const amountExceeded = balance && selectedAmount && balance < selectedAmount;
 
   return (
     <div className="flex flex-1 flex-col bg-white">
@@ -49,9 +55,7 @@ const SecondaryLayout = ({
             <div className="flex flex-grow w-full flex-col pb-5">
               <div className="flex w-full items-center justify-between">
                 <h1 className="text-base text-neutral-500">Total payment:</h1>
-                <h1 className="text-lg font-bold text-orange-500">
-                  UGX 45,000
-                </h1>
+                <h1 className="text-lg font-bold text-orange-500">UGX 1,000</h1>
               </div>
               <div className="flex w-full items-center justify-between">
                 <h1 className="text-base text-slate-600">My Balance:</h1>
@@ -75,7 +79,7 @@ const SecondaryLayout = ({
                       className="cursor-pointer text-green-500"
                     />
                     <h1 className="text-base font-bold text-green-500">
-                      UGX 104,000
+                      UGX {balance && balance.toLocaleString()}
                     </h1>
                   </div>
                 )}
@@ -86,7 +90,7 @@ const SecondaryLayout = ({
           <div className="flex h-full w-full">
             {submit ? (
               <Button
-                disabled={loading}
+                disabled={loading || amountExceeded || false}
                 onClick={onSubmit}
                 className={`w-full uppercase h-12 text-base font-bold rounded-full  bg-defaultColor text-black hover:text-white flex flex-row items-center`}
               >
