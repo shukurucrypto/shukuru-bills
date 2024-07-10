@@ -13,7 +13,9 @@ export default function Home() {
   return (
     <main className="flex items-center justify-center bg-defaultColor h-screen flex-col p-8">
       <div className="flex flex-1 items-center justify-end flex-col py-10">
-        <h1 className="text-xl font-semibold my-3">Buy and pay Bills</h1>
+        <h1 className="text-xl font-semibold my-3">
+          Pay for <span className="underline">everyday</span> bills
+        </h1>
 
         <p className="text-[11px] text-white">
           {address?.slice(0, 3)} ....{address?.slice(-4)}

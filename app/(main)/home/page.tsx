@@ -1,3 +1,5 @@
+"use client";
+
 import { activities } from "@/data";
 import HomeContent from "./home-content";
 
