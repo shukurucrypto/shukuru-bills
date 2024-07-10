@@ -1,19 +1,22 @@
 "use client";
 
-import React, { ReactNode, useEffect } from "react";
-import useConnectWallet from "../hooks/useConnectWallet";
+import { ReactNode, useEffect } from "react";
+import { useAccount, useConnect } from "wagmi";
 import { injected } from "wagmi/connectors";
 
 const WalletConnectLayout = ({ children }: { children: ReactNode }) => {
-  const { isConnected, connect } = useConnectWallet();
+  const { isConnected, isDisconnected } = useAccount();
+  const { connect } = useConnect();
 
-  // useEffect(() => {
-  //   if (!isConnected) {
-  //     connect({
-  //       connector: injected({ target: "metaMask" }),
-  //     });
-  //   }
-  // }, [isConnected, connect]);
+  useEffect(() => {
+    if (window.ethereum && !isConnected) {
+      connectMyWallet();
+    }
+  }, [isConnected]);
+
+  const connectMyWallet = async () => {
+    connect({ connector: injected() });
+  };
 
   return <>{children}</>;
 };

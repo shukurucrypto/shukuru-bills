@@ -12,7 +12,7 @@ const useConnectWallet = () => {
       connectMyWallet();
       setHideConnectBtn(true);
     }
-  }, [isConnected, isDisconnected]);
+  }, [isConnected]);
 
   const connectMyWallet = async () => {
     connect({ connector: injected() });
