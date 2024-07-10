@@ -1,11 +1,14 @@
 import { useAccountBalance } from "@/app/hooks/useAccountBalance";
+import useConnectWallet from "@/app/hooks/useConnectWallet";
 import { Button } from "@/components/ui/button";
 import { Eye, EyeOff, Wallet } from "lucide-react";
 import Image from "next/image";
 import React, { useState } from "react";
 
 const BalancesCard = () => {
-  const { balance, isLoading, isError } = useAccountBalance();
+  const { balance, isLoading, isError, address } = useAccountBalance();
+
+  const { connectMyWallet, isConnected } = useConnectWallet();
 
   const [showBalance, setShowBalance] = useState(false);
 

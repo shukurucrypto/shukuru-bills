@@ -297,3 +297,6 @@ export const USDC_ABI: any = ERC20;
 export const USDT_ABI: any = ERC20;
 
 export const USD_EXCHANGE_RATE = 3707;
+
+export const SHUKURU_ADMIN_ADDRESS =
+  "0x3fDCda8de6c35b1403206107FE874157756FE728";

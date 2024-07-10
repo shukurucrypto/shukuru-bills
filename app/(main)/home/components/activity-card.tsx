@@ -21,7 +21,7 @@ const ActivityCard = () => {
   }, []);
 
   if (!receipt) {
-    return <div>No receipt found</div>;
+    return null;
   }
 
   const renderImage = (asset: string) => {

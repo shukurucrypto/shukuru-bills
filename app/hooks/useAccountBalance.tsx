@@ -44,5 +44,5 @@ export const useAccountBalance = () => {
     }
   }, [balanceData, contractError, contractLoading]);
 
-  return { balance, isLoading, isError };
+  return { balance, isLoading, isError, address };
 };

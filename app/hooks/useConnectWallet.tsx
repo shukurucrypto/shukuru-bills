@@ -5,16 +5,20 @@ import { injected } from "wagmi/connectors";
 const useConnectWallet = () => {
   const [hideConnectBtn, setHideConnectBtn] = useState(false);
   const { connect } = useConnect();
-  const { isConnected } = useAccount();
+  const { isConnected, isDisconnected } = useAccount();
 
   useEffect(() => {
     if (window.ethereum && window.ethereum.isMiniPay) {
+      connectMyWallet();
       setHideConnectBtn(true);
-      connect({ connector: injected({ target: "metaMask" }) });
     }
-  }, [connect]);
+  }, [connect, isDisconnected, isConnected]);
 
-  return { hideConnectBtn, isConnected, connect };
+  const connectMyWallet = async () => {
+    connect({ connector: injected() });
+  };
+
+  return { hideConnectBtn, isConnected, connect, connectMyWallet };
 };
 
 export default useConnectWallet;

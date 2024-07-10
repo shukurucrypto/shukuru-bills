@@ -1,8 +1,10 @@
+"use client";
+
 import React, { ReactNode, useEffect } from "react";
 import useConnectWallet from "../hooks/useConnectWallet";
 import { injected } from "wagmi/connectors";
 
-const MainLayout = ({ children }: { children: ReactNode }) => {
+const WalletConnectLayout = ({ children }: { children: ReactNode }) => {
   const { isConnected, connect } = useConnectWallet();
 
   useEffect(() => {
@@ -16,4 +18,4 @@ const MainLayout = ({ children }: { children: ReactNode }) => {
   return <>{children}</>;
 };
 
-export default MainLayout;
+export default WalletConnectLayout;

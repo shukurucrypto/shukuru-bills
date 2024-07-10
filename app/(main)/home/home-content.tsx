@@ -1,6 +1,5 @@
 "use client";
 
-import { useAccountBalance } from "@/app/hooks/useAccountBalance";
 import { ActivityI } from "@/types";
 import Image from "next/image";
 import MainLayout from "../layout";
@@ -30,7 +29,7 @@ const HomeContent = ({ activities }: { activities: ActivityI[] }) => {
 
         <h1 className="text-base my-4 font-medium">Recent activity</h1>
 
-        <div className="w-full rounded-md overflow-hidden border">
+        <div className="w-full rounded-md overflow-hidden ">
           <ActivityCard />
         </div>
       </div>

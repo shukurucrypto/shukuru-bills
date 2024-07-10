@@ -1,8 +1,7 @@
 "use client";
 
-import { upsertPayBill } from "@/app/actions";
 import SecondaryLayout from "@/app/components/secondary-layout";
-import { useBillMutation } from "@/app/hooks/mutations/useBillMutation";
+import usePayCrypto from "@/app/hooks/mutations/usePayCrypto";
 import { powerAccount, powerBills } from "@/data";
 import { PayBillI } from "@/types";
 import Image from "next/image";
@@ -19,8 +18,7 @@ const PowerBillSummary = () => {
 
   const bill = powerBills.find((bill) => bill.id === Number(id));
 
-  const mutation = useBillMutation(upsertPayBill);
-  // http://localhost:3000/power/pay/1/amount/summary?acc=14352987862&amt=2000
+  const payMutation = usePayCrypto();
 
   const account = searchParams.get("acc");
 
@@ -29,6 +27,8 @@ const PowerBillSummary = () => {
   const meter = searchParams.get("meter");
 
   const amt = searchParams.get("amt");
+
+  // 1. Pay the shukuru admin then if successful, pay the biller to get the power.
 
   const handleSubmit = () => {
     const billData: PayBillI = {
@@ -39,7 +39,9 @@ const PowerBillSummary = () => {
       provider: "umeme",
     };
 
-    mutation.mutate(billData);
+    payMutation.mutate({
+      billData,
+    });
   };
 
   if (!bill || !account || !amt || !meter || !outstanding) {
@@ -47,9 +49,13 @@ const PowerBillSummary = () => {
     return;
   }
 
-  if (mutation.isSuccess && mutation.data && mutation.data.success === 1) {
+  if (
+    payMutation.isSuccess &&
+    payMutation.data &&
+    payMutation.data.success === 1
+  ) {
     // Serialize the data object to a query string
-    const queryString = qs.stringify(mutation.data.details);
+    const queryString = qs.stringify(payMutation.data.details);
 
     // Use the query string in the route prop
     const routerString = `/confirmed?${queryString}`;
@@ -57,7 +63,11 @@ const PowerBillSummary = () => {
     router.push(routerString);
   }
 
-  if (mutation.isSuccess && mutation.data && mutation.data.success === 0) {
+  if (
+    payMutation.isSuccess &&
+    payMutation.data &&
+    payMutation.data.success === 0
+  ) {
     toast("Failed to fetch bill information");
   }
 
@@ -68,9 +78,9 @@ const PowerBillSummary = () => {
       route={`/confirmed/${bill.id}`}
       submit
       submitText="Next"
-      loading={mutation.isPending}
+      loading={payMutation.isPending}
       onSubmit={handleSubmit}
-      isError={mutation.isError && mutation.error.message}
+      isError={payMutation.isError && payMutation.error.message}
     >
       <div className="w-full h-full border rounded-md p-4">
         <div className="w-full flex items-center justify-center">
