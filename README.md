@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Shukuru Bills
+
+## Introduction
+
+Shukuru Bills offers an affordable and convenient way for MiniPay users to pay for household utilities directly from their wallets, without any hassle.
+
+## Supported Bill Types
+
+- **Electricity:** Both Yaka and Prepaid
+- **Television:** GoTV (all packages) and Startime (all packages)
+- **Water:** National Water and Sewerage Corporation (NWSC)
+- **Airtime:** MTN and Airtel
+- **Internet:** Various providers including Roke and Smile
+
+All transactions are seamlessly processed within the wallet with a minimal fee.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Before you begin, ensure you have met the following requirements:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- You have a MiniPay wallet set up and configured.
+- You have internet access to connect to the utility service providers.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. **Clone the repository:**
 
-## Learn More
+   ```bash
+   git clone https://github.com/yourusername/shukuru-bills.git
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+2. **Navigate to the project directory:**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   cd shukuru-bills
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+3. **Install the dependencies:**
 
-## Deploy on Vercel
+   ```bash
+   npm install
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+4. **Run the application:**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+   ```bash
+   npm start
+   ```
+
+### Usage
+
+1. **Open the Shukuru Bills application.**
+2. **Select the type of bill you want to pay.**
+3. **Enter the necessary details (e.g., account number, amount).**
+4. **Confirm the payment.**
+5. **The transaction will be processed and you will receive a confirmation notification.**
+
+## Useful Links
+
+- [GitHub Repository](https://github.com/yourusername/shukuru-bills)
+- [Demo Video](https://linktodemovideo.com)
+- [Live Widget](https://linktolivewidget.com)
+- [App on Play Store](https://linktoappstore.com)
+
+## Contributing
+
+1. **Fork the repository.**
+2. **Create a new branch:**
+
+   ```bash
+   git checkout -b feature/your-feature
+   ```
+
+3. **Make your changes and commit them:**
+
+   ```bash
+   git commit -m 'Add some feature'
+   ```
+
+4. **Push to the branch:**
+
+   ```bash
+   git push origin feature/your-feature
+   ```
+
+5. **Submit a pull request.**
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+If you want to contact me you can reach me at [jovanmwesigwa79@gmail.com](mailto:jovanmwesigwa79@gmail.com).
