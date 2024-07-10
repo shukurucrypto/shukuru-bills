@@ -8,11 +8,11 @@ const useConnectWallet = () => {
   const { isConnected, isDisconnected } = useAccount();
 
   useEffect(() => {
-    if (window.ethereum) {
+    if (window.ethereum && !isConnected) {
       connectMyWallet();
       setHideConnectBtn(true);
     }
-  }, [connect, isDisconnected, isConnected]);
+  }, [isConnected, isDisconnected]);
 
   const connectMyWallet = async () => {
     connect({ connector: injected() });
