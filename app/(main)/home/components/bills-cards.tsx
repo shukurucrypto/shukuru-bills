@@ -10,7 +10,7 @@ const BillsCards = () => {
     <>
       <div className="flex w-full flex-row ">
         <div className="w-full h-32 border mb-3 bg-white rounded-md flex flex-col items-center pb-2 overflow-hidden">
-          <div className="flex h-full w-full items-center relative bg-black overflow-hidden">
+          <div className="flex h-full w-full items-center relative bg-neutral-100 overflow-hidden">
             <Image src="/icons/phone.png" layout="fill" alt="phone" />
           </div>
           <p className="text-xs font-semibold text-center">Airtime & Data</p>
@@ -20,7 +20,7 @@ const BillsCards = () => {
           href="/tv"
           className="w-full h-32 border mb-3 bg-white rounded-md flex flex-col items-center pb-2 overflow-hidden mx-3"
         >
-          <div className="flex h-full w-full items-center relative bg-black overflow-hidden">
+          <div className="flex h-full w-full items-center relative bg-neutral-100 overflow-hidden">
             <Image src="/icons/tv.png" layout="fill" alt="phone" />
           </div>
           <p className="text-xs font-semibold text-center">Tv</p>
@@ -28,9 +28,9 @@ const BillsCards = () => {
 
         <Link
           href="/power"
-          className="w-full h-32 border mb-3 bg-white rounded-md flex flex-col items-center pb-2 overflow-hidden mx-3"
+          className="w-full h-32 border mb-3 bg-white rounded-md flex flex-col items-center pb-2 overflow-hidden "
         >
-          <div className="flex h-full w-full items-center relative bg-black overflow-hidden">
+          <div className="flex h-full w-full items-center relative bg-neutral-100 overflow-hidden">
             <Image src="/icons/power.png" layout="fill" alt="phone" />
           </div>
           <p className="text-xs font-semibold text-center">Electricity</p>
@@ -42,13 +42,13 @@ const BillsCards = () => {
           href="/water"
           className="w-full h-32 border  bg-white rounded-md flex flex-col items-center pb-2 overflow-hidden "
         >
-          <div className="flex h-full w-full items-center relative bg-black overflow-hidden">
+          <div className="flex h-full w-full items-center relative bg-neutral-100 overflow-hidden">
             <Image src="/icons/water.png" layout="fill" alt="phone" />
           </div>
           <p className="text-xs font-semibold text-center">Water</p>
         </Link>
 
-        <div className="w-full h-32  mx-3 rounded-md flex flex-col items-center p-3"></div>
+        <div className="w-full h-32 rounded-md flex flex-col items-center p-3"></div>
         <div className="w-full h-32   rounded-md flex flex-col items-center p-3"></div>
       </div>
     </>
