@@ -87,10 +87,6 @@ Before you begin, ensure you have met the following requirements:
 
 5. **Submit a pull request.**
 
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
 ## Contact
 
 If you want to contact me you can reach me at [jovanmwesigwa79@gmail.com](mailto:jovanmwesigwa79@gmail.com).
