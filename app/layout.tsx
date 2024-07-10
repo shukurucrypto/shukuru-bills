@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import WagmiContextProvider from "@/providers/wagmi-context-provider";
 import ReactQueryProvider from "./context/reactquery-provider";
 import WalletConnectLayout from "./components/walletconnect-layout";
+import { Toaster } from "sonner";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -32,7 +33,10 @@ export default function RootLayout({
                 fontSans.variable
               )}
             >
-              {children}
+              <div className="flex flex-1 flex-grow bg-slate-50 flex-col min-h-screen">
+                {children}
+              </div>
+              <Toaster />
             </body>
           </html>
         </WalletConnectLayout>
