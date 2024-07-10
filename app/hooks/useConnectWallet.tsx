@@ -8,7 +8,7 @@ const useConnectWallet = () => {
   const { isConnected, isDisconnected } = useAccount();
 
   useEffect(() => {
-    if (window.ethereum && window.ethereum.isMiniPay) {
+    if (window.ethereum) {
       connectMyWallet();
       setHideConnectBtn(true);
     }
